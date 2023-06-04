@@ -14,16 +14,12 @@ import { TextInput } from "react-native-paper";
 import { Button } from "react-native-paper";
 import { styles } from "./style";
 export default function HomeScreen({ navigation }) {
-  const { value } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
   const [text, setText] = React.useState("");
 
-  useEffect(() => {
-    console.log("val", value);
-  }, [value]);
+  
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      {/* <Button onPress={navigation.openDrawer} title="Open navigation drawer" /> */}
       <Text>No Category found</Text>
       <Button
         style={styles.button}

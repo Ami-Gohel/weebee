@@ -18,22 +18,17 @@ interface propType {
 }
 
 export default function PropertyCard(props: propType) {
-  const { allFields, title, item, onEditCard } = props;
+  const { item, onEditCard } = props;
   const [text, setText] = useState<string>("");
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-  const [titleText, setTitle] = React.useState(false);
-  const onChangeText = (text: string, i: number) => {
-    setText(text);
-  };
+ 
   const onToggleSwitch = (bool) =>{
-    console.log('onToggleSwitch',bool)
      onEditCard(bool);
        setIsSwitchOn(!isSwitchOn);
 
   }
   const { type, lable, value } = item;
-console.log(" PropertyCard", titleText);
-console.log("lable")
+
   return (
     <>
       {type == "Text" ? (

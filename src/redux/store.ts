@@ -10,18 +10,11 @@ import {
     REGISTER,
     REHYDRATE
 } from 'redux-persist';
-import counterReducer from "./reducer";
 import categoriesReducer from './reducers/categories'
 
-// import activityReducer from '@/reducers/activity';
-// import assessmentReducer from '@/reducers/assessment';
-// import dateReducer from '@/reducers/date';
-// import logReducer from '@/reducers/log';
-// import settingsReducer from '@/reducers/settings';
-// import userReducer from '@/reducers/user';
+
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   categories: categoriesReducer,
 });
 

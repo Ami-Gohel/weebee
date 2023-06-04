@@ -15,14 +15,9 @@ import { Button } from "react-native-paper";
 import { styles } from "./style";
 import ManageCategoryScreen from "../categories";
 export default function HomeScreen({ navigation }) {
-  const dispatch = useDispatch();
-  const [text, setText] = React.useState("");
   const { categories } = useSelector((state) => state.categories);
 
-  useEffect(() => {
-    console.log("val", categories);
-  }, [categories]);
-  
+
   const  onAddCategory = ()=>{
     navigation.navigate('ManageCategory')
   }
@@ -31,7 +26,6 @@ export default function HomeScreen({ navigation }) {
 
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        {/* <Button onPress={navigation.openDrawer} title="Open navigation drawer" /> */}
         <Text>No Category found</Text>
         <Button style={styles.button} onPress={onAddCategory} mode="contained">
           ADD A CATEGORY

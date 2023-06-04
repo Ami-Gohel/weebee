@@ -15,13 +15,7 @@ export default function ManageCategoryScreen({ navigation }) {
   const [titleField, setTitleField] = useState("");
 
   const [menuList, setMenuList] = useState([]);
-  // useEffect(() => {
-  //   console.log("useEffect", categories[0].fields.fieldName);
-  //   const menu = categories?.map((item :CategoriesType)=> {
-  //     console.log("useEffect", item?.fields);
-  //     return item?.fields?.fieldName})
-  //   setMenuList(menu)
-  // }, [categories]);
+  
   const onAddCategory = () => {
     dispatch(
       addCategory({
@@ -32,28 +26,16 @@ export default function ManageCategoryScreen({ navigation }) {
       })
     );
   };
-  //   useEffect(() => {
-  // if( titleField?.length>0){
-  //   let categoryObj = { ...item, titleField: titleField };
-  //   dispatch(updateCategory({ index, categoryObj }));
-  // }
-  //     console.log("titleField", titleField);
-  //   }, [titleField]);
+  
   const onChangeTitleField = (
     index: number,
     item: CategoriesType,
     text: string
   ) => {
-    console.log("onChangeTitleField", text, index, item);
 
     let categoryObj = { ...item, titleField: text };
     dispatch(updateCategory({ index, categoryObj }));
-    // dispatch(
-    //   addCategory({
-    //     name: "string",
-    //     fields: [],
-    //   })
-    // );
+   
   };
   const onAddFieldText = (
     index: number,
@@ -62,13 +44,7 @@ export default function ManageCategoryScreen({ navigation }) {
   ) => {
     let categoryObj = { ...item, name };
     dispatch(updateCategory({ index, categoryObj }));
-    console.log("onAddFieldText", index, name);
-    // dispatch(
-    //   addCategory({
-    //     name: "string",
-    //     fields: [],
-    //   })
-    // );
+    
   };
 
   return (

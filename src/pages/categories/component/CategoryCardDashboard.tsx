@@ -67,10 +67,8 @@ export default function CategoryCard(props: propType) {
   };
   const onDeleteMenu = (i: number) => {
     let fieldArr = [...item?.fields] || [];
-    console.log("fieldArr", fieldArr, i);
 
     fieldArr.splice(i, 1);
-    console.log("categoryObj", fieldArr);
     let categoryObj = { ...item, fields: fieldArr };
 
     dispatch(updateCategory({ index, categoryObj }));
@@ -78,9 +76,7 @@ export default function CategoryCard(props: propType) {
   };
   const onEditField = (i: number, text: string, type = "") => {
     let fieldArr = [...item?.fields] || [];
-    console.log("onEditField", type);
     const t = type?.length > 0 ? type : fieldArr?.[i]?.type;
-    console.log("fieldArr", fieldArr, i, text, t);
     fieldArr[i] = {
       ...fieldArr?.[i],
       fieldName: text,
