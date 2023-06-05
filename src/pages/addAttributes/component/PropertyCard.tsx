@@ -9,9 +9,6 @@ import moment from "moment";
 
 interface propType {
   allFields: field[];
-  index: number;
-  onAddFieldText: (category: string) => void;
-  menu: string[];
   title: string;
   item: any;
   onEditCard: (text: string) => void;
@@ -25,6 +22,7 @@ export default function PropertyCard(props: propType) {
 
   const inputref = useRef();
   const onToggleSwitch = (bool) => {
+    inputref?.current?.blur();
     onEditCard(bool);
     setIsSwitchOn(!isSwitchOn);
   };
@@ -38,6 +36,7 @@ export default function PropertyCard(props: propType) {
     <>
       {type == "Text" ? (
         <TextInput
+          ref={inputref}
           label={lable}
           style={styles.input}
           value={value}
@@ -74,6 +73,7 @@ export default function PropertyCard(props: propType) {
         </>
       ) : type == "Number" ? (
         <TextInput
+          ref={inputref}
           label={lable}
           style={styles.input}
           value={value}
@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "500",
-
     marginBottom: 10,
   },
 

@@ -8,14 +8,13 @@ import { CategoriesType } from "../../redux/types/categories";
 
 import { addCategory, updateCategory } from "../../redux/reducers/categories";
 
-export default function ManageCategoryScreen({ navigation }) {
+export default function ManageCategoryScreen() {
   const { categories } = useSelector((state) => state.categories);
   const dispatch = useDispatch();
-  const [text, setText] = React.useState("");
   const [titleField, setTitleField] = useState("");
 
   const [menuList, setMenuList] = useState([]);
-  
+
   const onAddCategory = () => {
     dispatch(
       addCategory({
@@ -26,16 +25,14 @@ export default function ManageCategoryScreen({ navigation }) {
       })
     );
   };
-  
+
   const onChangeTitleField = (
     index: number,
     item: CategoriesType,
     text: string
   ) => {
-
     let categoryObj = { ...item, titleField: text };
     dispatch(updateCategory({ index, categoryObj }));
-   
   };
   const onAddFieldText = (
     index: number,
@@ -44,7 +41,6 @@ export default function ManageCategoryScreen({ navigation }) {
   ) => {
     let categoryObj = { ...item, name };
     dispatch(updateCategory({ index, categoryObj }));
-    
   };
 
   return (

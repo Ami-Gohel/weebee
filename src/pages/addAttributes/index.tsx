@@ -6,7 +6,7 @@ import { ScrollView, Text } from "react-native";
 
 import { addCategory, updateCategory } from "../../redux/reducers/categories";
 import PropertyCard from "./component/PropertyCard";
-import { CategoriesType } from "../../redux/types/categories";
+import { CategoriesType, field, fieldType } from "../../redux/types/categories";
 
 export default function AddAttributesScreen(
   {  route  },
@@ -27,7 +27,7 @@ export default function AddAttributesScreen(
     let fieldsSet = [...categories?.[route?.params?.index]?.categoryItems];
 
     let a = [];
-    allFields?.forEach((fieldVal) => {
+    allFields?.forEach((fieldVal: field) => {
       let obj = {};
       obj["value"] = "";
       obj["type"] = fieldVal?.type;
@@ -42,7 +42,12 @@ export default function AddAttributesScreen(
     };
     dispatch(updateCategory({ index: route.params.index, categoryObj }));
   };
-  const onEditCard = (item, index: number, text: string, cardIndex: number) => {
+  const onEditCard = (
+    item: fieldType[],
+    index: number,
+    text: string,
+    cardIndex: number
+  ) => {
     let fields = [...categories?.[route?.params?.index]?.categoryItems];
 
     let itemNew = [...item];
