@@ -6,6 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./src/redux/store";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import MyDrawer from "./src/pages/drawer";
+import "react-native-gesture-handler";
 const theme = {
   ...DefaultTheme,
   colors: {
