@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Card, Menu } from "react-native-paper";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Card, Menu } from "react-native-paper";
 import { GestureResponderEvent, StyleSheet, Text, View } from "react-native";
 import { TextInput, Switch } from "react-native-paper";
 
 import { CategoriesType, field } from "../../../redux/types/categories";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
+import moment from "moment";
+import { event } from "react-native-reanimated";
+// import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 interface propType {
   allFields: field[];
@@ -14,25 +16,32 @@ interface propType {
   menu: string[];
   title: string;
   item: any;
-  onEditCard:(text:  string)=> void
+  onEditCard: (text: string) => void;
 }
 
 export default function PropertyCard(props: propType) {
   const { item, onEditCard } = props;
   const [text, setText] = useState<string>("");
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
- 
-  const onToggleSwitch = (bool) =>{
-     onEditCard(bool);
-       setIsSwitchOn(!isSwitchOn);
+  const [isDate, setIDate] = React.useState(false);
 
-  }
+  const inputref = useRef();
+  const onToggleSwitch = (bool) => {
+    onEditCard(bool);
+    setIsSwitchOn(!isSwitchOn);
+  };
   const { type, lable, value } = item;
 
+  const onChange = (event, selectedDate) => {
+    setIDate(false);
+    onEditCard(selectedDate.toUTCString());
+    // setDate(currentDate);
+  };
   return (
     <>
       {type == "Text" ? (
         <TextInput
+          // ref={inputref}
           label={lable}
           style={styles.input}
           value={value}
@@ -41,14 +50,32 @@ export default function PropertyCard(props: propType) {
           mode="outlined"
         />
       ) : type === "Date" ? (
-        <TextInput
-          label={lable}
-          style={styles.input}
-          value={value}
-          keyboardType="number-pad"
-          onChangeText={(text) => onEditCard(text)}
-          mode="outlined"
-        />
+        <>
+          <Button
+            onPress={() => setIDate(true)}
+            mode="outlined"
+            style={styles.bottonDate}
+          >
+            {value
+              ? moment(value).format("DD-MM-YYYY")
+              : moment(new Date()).format("DD-MM-YYYY")}
+          </Button>
+          {isDate && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={value ? new Date(value) : new Date()}
+              mode={"date"}
+              is24Hour={true}
+              onChange={onChange}
+              minimumDate={new Date()}
+              maximumDate={
+                new Date(moment().add(6, "months").format("YYYY-MM-DD"))
+              }
+              style={styles.calendar}
+              onTouchStart={() => inputref?.current?.blur()}
+            />
+          )}
+        </>
       ) : type == "Number" ? (
         <TextInput
           label={lable}
@@ -64,7 +91,10 @@ export default function PropertyCard(props: propType) {
             value={value}
             onValueChange={(bool) => onToggleSwitch(bool)}
           />
-          <Text>{lable}</Text>
+          <Text>
+            {"  "}
+            {lable}
+          </Text>
         </View>
       ) : null}
     </>
@@ -86,6 +116,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
   },
+  calendar: {
+    alignSelf: "flex-start",
+    marginTop: 20,
+  },
   button: {
     alignSelf: "center",
 
@@ -100,6 +134,12 @@ const styles = StyleSheet.create({
   addMenu: {
     alignSelf: "center",
     borderRadius: 0,
+  },
+  bottonDate: {
+    borderRadius: 0,
+    width: "100%",
+    marginTop: 10,
+    alignItems:'flex-start'
   },
   input: { width: "100%" },
   addField: {

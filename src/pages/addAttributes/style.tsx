@@ -11,10 +11,9 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "500",
-
     marginBottom: 10,
   },
-  main: { flex: 1, marginBottom: 80 },
+  main: { flex: 1, marginBottom: 80 ,  marginTop:20},
   cardMain: {
     width: "90%",
     alignSelf: "center",
