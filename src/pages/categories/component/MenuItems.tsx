@@ -31,7 +31,7 @@ export default function MenuItems(props: menuProps) {
   const { visible, anchor, closeMenu, onChooseMenu } = props;
   return (
     <>
-      <Menu visible={visible} onDismiss={closeMenu} anchor={anchor}>
+      <Menu style={ { maxWidth:100}} visible={visible} onDismiss={closeMenu} anchor={anchor}>
         {menu.map((item, index) => {
           return (
             <Menu.Item

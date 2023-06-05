@@ -13,18 +13,18 @@ import {
   Button,
 } from "react-native-paper";
 import MenuItems from "./MenuItems";
-import { CategoriesType ,field} from "../../../redux/types/categories";
+import { CategoriesType, field } from "../../../redux/types/categories";
 import { updateCategory } from "../../../redux/reducers/categories";
 interface propsType {
   categoryItem: CategoriesType;
   index: number;
   fieldEl: field;
   onDeleteMenu: () => void;
-  onEditField: (category:string, type: string) => void;
+  onEditField: (category: string, type: string) => void;
 }
 
 export default function AddField(props: propsType) {
-    const { onDeleteMenu, categoryItem, index, fieldEl, onEditField } = props;
+  const { onDeleteMenu, categoryItem, index, fieldEl, onEditField } = props;
 
   const [category, setCategory] = useState(fieldEl?.fieldName || "Text");
   const [visible, setVisible] = React.useState(false);
@@ -33,7 +33,7 @@ export default function AddField(props: propsType) {
   const dispatch = useDispatch();
   const openMenu = () => {
     setVisible(true);
-  }
+  };
 
   const closeMenu = () => {
     setVisible(false);
@@ -50,7 +50,6 @@ export default function AddField(props: propsType) {
 
   const closeEditMenu = () => setEditMenuVisible(false);
 
-
   return (
     <View style={styles.main}>
       <TextInput
@@ -58,10 +57,11 @@ export default function AddField(props: propsType) {
         style={styles.input}
         value={category}
         onChangeText={(text) => {
-          setCategory(text)
-           onEditField(text, '')}}
+          setCategory(text);
+          onEditField(text, "");
+        }}
         mode="outlined"
-        onEndEditing={() => onEditField(category,'')}
+        onEndEditing={() => onEditField(category, "")}
       />
 
       <MenuItems
@@ -71,11 +71,7 @@ export default function AddField(props: propsType) {
         onDismiss={closeEditMenu}
         openMenu={openEditMenu}
         anchor={
-          <Button
-            onPress={openEditMenu}
-            style={{ width: "80%", marginRight: 0 }}
-            mode="text"
-          >
+          <Button style={styles.menuButton} onPress={openEditMenu} mode="text">
             {fieldEl?.type?.toUpperCase()}
           </Button>
         }
@@ -104,6 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     // height: "100%",
   },
+  menuButton: { width: 70 },
   main: {
     width: "100%",
     alignSelf: "center",
