@@ -31,7 +31,6 @@ const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
-            // disable the serializable check for redux-persist's actions
             serializableCheck: {
                 ignoredActions: [
                     FLUSH,

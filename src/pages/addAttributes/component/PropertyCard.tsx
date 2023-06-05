@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Button, Card, Menu } from "react-native-paper";
-import { GestureResponderEvent, StyleSheet, Text, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { Button } from "react-native-paper";
+import { StyleSheet, Text, View } from "react-native";
 import { TextInput, Switch } from "react-native-paper";
 
-import { CategoriesType, field } from "../../../redux/types/categories";
+import { field } from "../../../redux/types/categories";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
-import { event } from "react-native-reanimated";
-// import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 interface propType {
   allFields: field[];
@@ -35,13 +33,11 @@ export default function PropertyCard(props: propType) {
   const onChange = (event, selectedDate) => {
     setIDate(false);
     onEditCard(selectedDate.toUTCString());
-    // setDate(currentDate);
   };
   return (
     <>
       {type == "Text" ? (
         <TextInput
-          // ref={inputref}
           label={lable}
           style={styles.input}
           value={value}
@@ -139,7 +135,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     width: "100%",
     marginTop: 10,
-    alignItems:'flex-start'
+    alignItems: "flex-start",
   },
   input: { width: "100%" },
   addField: {

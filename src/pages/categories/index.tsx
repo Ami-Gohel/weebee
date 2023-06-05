@@ -53,6 +53,7 @@ export default function ManageCategoryScreen({ navigation }) {
         {categories?.map((item: CategoriesType, index: number) => {
           return (
             <CategoryCard
+              key={index?.toString()}
               onAddFieldText={(category: string) =>
                 onAddFieldText(index, item, category)
               }

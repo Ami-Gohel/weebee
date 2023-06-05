@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.6,
     alignSelf: "center",
     paddingHorizontal: 10,
-    // height: "100%",
   },
   menuButton: { width: 70 },
   main: {

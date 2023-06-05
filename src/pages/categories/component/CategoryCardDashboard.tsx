@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Menu } from "react-native-paper";
-import { GestureResponderEvent, StyleSheet, Text, View } from "react-native";
+import {  StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
-import { useSelector, useDispatch } from "react-redux";
-
+import {  useDispatch } from "react-redux";
 import { Button } from "react-native-paper";
 import AddField from "./AddField";
 import MenuItems from "./MenuItems";
@@ -26,7 +25,6 @@ export default function CategoryCard(props: propType) {
   const [category, setCategory] = useState(item?.name);
   const [visible, setVisible] = React.useState(false);
   const [type, setType] = React.useState("Text");
-  // const [titleField, setTitleField] = useState('');
 
   const [visibleMenu, setTitleMenuVisible] = React.useState(false);
   const dispatch = useDispatch();
@@ -108,6 +106,7 @@ export default function CategoryCard(props: propType) {
             <AddField
               categoryItem={item}
               fieldEl={fieldEl}
+              key={i?.toString()}
               index={index}
               onDeleteMenu={() => onDeleteMenu(i)}
               onEditField={(text: string, type: string) =>
